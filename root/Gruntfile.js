@@ -43,8 +43,21 @@ module.exports = function(grunt) {
           'browserify:dev'
         ],
         options: {
+          livereload: true,
           spawn: false,
           atBegin: true
+        }
+      }
+    },
+
+
+
+
+    connect: {
+      dev: {
+        options: {
+          port: 3000,
+          base: '.'
         }
       }
     }
@@ -55,9 +68,15 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-browserify');
+  grunt.loadNpmTasks('grunt-contrib-connect');
 
   grunt.registerTask('debug', [
     'browserify:dev'
+  ]);
+
+  grunt.registerTask('server', [
+    'connect:dev',
+    'watch:dev'
   ]);
 
   grunt.registerTask('release', [
