@@ -13,8 +13,15 @@ Run
 
     grunt-init browserify
 
-What we get
+Grunt tasks
 -----------
+
+ * `grunt` - build debug version
+ * `grunt release` - build production version
+ * `grunt watch` - build debug version while watching files modifications
+
+Example session
+---------------
 
     ☭> cd tmp
     ☭> mkdir helloworld
