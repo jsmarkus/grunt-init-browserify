@@ -2,13 +2,22 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
 
+    dirTmp: '.tmp/',
+    dirRelease: 'build/release/',
+    dirDebug: 'build/debug/',
 
-
+    uglify: {
+      prod: {
+        files: {
+          '<%= dirRelease %>app.js': '<%= dirTmp %>app.js'
+        }
+      }
+    },
 
     browserify: {
       dev: {
         files: {
-          'build/debug/app.js': 'src/index.js'
+          '<%= dirDebug %>app.js': 'src/index.js'
         },
         options: {
           debug: true
@@ -16,12 +25,11 @@ module.exports = function(grunt) {
       },
       prod: {
         files: {
-          'build/release/app.js': 'src/index.js'
+          '<%= dirTmp %>app.js': 'src/index.js'
         },
         options: {}
       }
     },
-
 
 
 
@@ -44,11 +52,24 @@ module.exports = function(grunt) {
 
 
 
-
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-browserify');
 
-  // Default task.
-  grunt.registerTask('default', ['browserify:dev']);
-  grunt.registerTask('release', ['browserify:prod']);
+  grunt.registerTask('debug', [
+    'browserify:dev'
+  ]);
+
+  grunt.registerTask('release', [
+    'browserify:prod',
+    'uglify:prod'
+  ]);
+
+  grunt.registerTask('watch', [
+    'watch:dev'
+  ]);
+
+  grunt.registerTask('default', [
+    'debug'
+  ]);
 };
