@@ -20,6 +20,7 @@ exports.template = function(grunt, init, done) {
 	], function(err, props) {
 
 		props.devDependencies = {
+			"browserify": "~2.34",
 			"grunt-contrib-watch": "~0.5.3",
 			"grunt": "~0.4.1",
 			"grunt-browserify": "~1.2.8"
