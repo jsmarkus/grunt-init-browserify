@@ -65,10 +65,6 @@ module.exports = function(grunt) {
     'uglify:prod'
   ]);
 
-  grunt.registerTask('watch', [
-    'watch:dev'
-  ]);
-
   grunt.registerTask('default', [
     'debug'
   ]);
